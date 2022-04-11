@@ -1,0 +1,30 @@
+<div [ngSwitch]="config.type">
+  <div *ngSwitchDefault>
+    <div class="dynamic-field form-input" [formGroup]="group">
+      <label>{{ config.label }}</label>
+      <input
+        type="text"
+        [attr.placeholder]="config.placeholder"
+        [formControlName]="config.name"
+      />
+    </div>
+  </div>
+  <div *ngSwitchCase="'button'">
+    <form class="dynamic-field form-button" [formGroup]="group">
+      <button [disabled]="config.disabled" type="submit">
+        {{ config.label }}
+      </button>
+    </form>
+  </div>
+  <div *ngSwitchCase="'select'">
+    <div class="dynamic-field form-select" [formGroup]="group">
+      <label>{{ config.label }}</label>
+      <select [formControlName]="config.name">
+        <option value="">{{ config.placeholder }}</option>
+        <option *ngFor="let option of config.options">
+          {{ option }}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>

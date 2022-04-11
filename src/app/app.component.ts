@@ -23,9 +23,16 @@ export class AppComponent {
   config: FieldConfig[] = [
     {
       type: 'input',
-      label: 'Full name',
-      name: 'name',
-      placeholder: 'Enter your name',
+      label: 'First name',
+      name: 'firstName',
+      placeholder: 'Enter your first name',
+      validation: [Validators.required, Validators.minLength(4)]
+    },
+    {
+      type: 'input',
+      label: 'Last name',
+      name: 'lastName',
+      placeholder: 'Enter your last name',
       validation: [Validators.required, Validators.minLength(4)]
     },
     {
@@ -53,7 +60,8 @@ export class AppComponent {
     });
 
     this.form.setDisabled('submit', true);
-    this.form.setValue('name', 'Todd Motto');
+    // this.form.setValue('firstName', 'Todd Motto');
+    this.form.patchValue({'firstName':'Vlada', 'lastName':'Zhyg'})
   }
 
   submit(value: {[name: string]: any}) {
